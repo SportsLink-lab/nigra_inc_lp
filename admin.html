@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIGRA Admin | NEWS CMS</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            background: #f4f7f9;
+            color: #333;
+        }
+
+        .admin-wrap {
+            max-width: 900px;
+            margin: 100px auto;
+            padding: 40px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        .form-textarea {
+            height: 150px;
+        }
+
+        .btn-save {
+            background: var(--accent-orange);
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 900;
+        }
+
+        .news-list-admin {
+            margin-top: 60px;
+        }
+
+        .admin-item {
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #login-screen {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-card {
+            width: 400px;
+            padding: 40px;
+            background: #fff;
+            border-radius: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="login-screen">
+        <div class="login-card">
+            <h2 style="margin-bottom:30px;">ADMIN LOGIN</h2>
+            <input type="password" id="admin-pass" class="form-input" placeholder="Password"
+                style="margin-bottom:20px;">
+            <button class="btn-save" onclick="login()">Enter</button>
+        </div>
+    </div>
+
+    <div class="admin-wrap" id="admin-content" style="display:none;">
+        <div class="admin-header">
+            <h2>NEWS MANAGEMENT</h2>
+            <button class="btn-save" style="background:#eee; color:#333; padding:10px 20px;"
+                onclick="location.reload()">Logout</button>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">日付 (YYYY.MM.DD)</label>
+            <input type="text" id="news-date" class="form-input" placeholder="2026.02.09">
+        </div>
+        <div class="form-group">
+            <label class="form-label">タイトル</label>
+            <input type="text" id="news-title" class="form-input" placeholder="記事のタイトル">
+        </div>
+        <div class="form-group">
+            <label class="form-label">画像URL (任意)</label>
+            <input type="text" id="news-image" class="form-input" placeholder="https://...">
+        </div>
+        <div class="form-group">
+            <label class="form-label">本文</label>
+            <textarea id="news-body" class="form-textarea" placeholder="記事の内容"></textarea>
+        </div>
+        <button class="btn-save" onclick="saveNewsItem()">保存する</button>
+
+        <div class="news-list-admin" id="admin-news-list"></div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'nigra_news_data';
+        const PASSWORD = 'nigra';
+
+        function login() {
+            if (document.getElementById('admin-pass').value === PASSWORD) {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById('admin-content').style.display = 'block';
+                renderAdminList();
+            } else { alert('Incorrect password.'); }
+        }
+
+        function saveNewsItem() {
+            const date = document.getElementById('news-date').value || new Date().toISOString().slice(0, 10).replace(/-/g, '.');
+            const title = document.getElementById('news-title').value;
+            const body = document.getElementById('news-body').value;
+            const image = document.getElementById('news-image').value;
+
+            if (!title || !body) return alert('Input Title and Body');
+
+            const news = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            news.unshift({ id: Date.now().toString(), date, title, body, image });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(news));
+
+            document.getElementById('news-title').value = '';
+            document.getElementById('news-body').value = '';
+            document.getElementById('news-image').value = '';
+            renderAdminList();
+        }
+
+        function deleteItem(id) {
+            if (!confirm('Delete this item?')) return;
+            const news = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            const filtered = news.filter(n => n.id !== id);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+            renderAdminList();
+        }
+
+        function renderAdminList() {
+            const news = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+            const list = document.getElementById('admin-news-list');
+            list.innerHTML = '<h3 style="margin-bottom:20px;">Current News</h3>';
+            news.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'admin-item';
+                div.innerHTML = `
+                    <div><strong>${item.date}</strong> - ${item.title}</div>
+                    <button class="btn-delete" onclick="deleteItem('${item.id}')">削除</button>
+                `;
+                list.appendChild(div);
+            });
+        }
+    </script>
+</body>
+
+</html>

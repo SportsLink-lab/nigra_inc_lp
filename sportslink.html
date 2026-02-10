@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportsLink | 学生と、企業と、チームを繋ぐ。</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .sl-hero {
+            padding-top: 200px;
+            text-align: center;
+        }
+
+        .sl-tabs-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .sl-tab-btn {
+            padding: 12px 30px;
+            background: #111;
+            border: 1px solid #222;
+            color: #fff;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .sl-tab-btn.active {
+            background: var(--accent-orange);
+            border-color: var(--accent-orange);
+        }
+
+        .sl-tab-content {
+            display: none;
+        }
+
+        .sl-tab-content.active {
+            display: block;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .sl-tabs-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sl-tab-btn {
+                width: 80%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loader">
+        <div class="loader-text">NIGRA</div>
+    </div>
+    <header class="header">
+        <div class="container">
+            <a href="https://www.nigura.site/" class="logo"><img src="assets/images/logo-nigra.png" alt="NIGRA"></a>
+            <button class="menu-toggle" id="menu-toggle"><span></span><span></span><span></span></button>
+            <nav class="nav" id="nav">
+                <a href="https://www.nigura.site/" class="nav-link">HOME</a>
+                <a href="https://www.nigura.site/academy" class="nav-link">Academy</a>
+                <a href="https://www.nigura.site/sportslink" class="nav-link active">SportsLink</a>
+                <a href="https://www.nigura.site/company" class="nav-link">Company</a>
+                <a href="https://www.nigura.site/contact" class="nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <section class="sl-hero">
+                <span class="section-label reveal">CO-CREATION PLATFORM</span>
+                <h1 class="large-title reveal">SportsLink</h1>
+            </section>
+            <div class="sl-tabs-nav reveal">
+                <button class="sl-tab-btn active" data-tab="students">学生向け</button>
+                <button class="sl-tab-btn" data-tab="corporate">企業向け</button>
+                <button class="sl-tab-btn" data-tab="teams">チーム一覧</button>
+            </div>
+            <div id="students" class="sl-tab-content active reveal">
+                <div style="display:flex; gap:40px; align-items:center; flex-wrap:wrap;">
+                    <img src="assets/images/IMG_0457.jpeg" alt=""
+                        style="width:100%; max-width:500px; border-radius:12px;">
+                    <div style="flex:1; min-width:300px;">
+                        <h3>競技生活を、社会への武器に。</h3>
+                        <p>スポーツで培った情熱を、キャリアへと繋げる共創プロジェクト。</p>
+                    </div>
+                </div>
+                <div id="students-grid" class="students-grid"></div>
+            </div>
+            <div id="corporate" class="sl-tab-content reveal">
+                <div style="display:flex; gap:40px; align-items:center; flex-wrap:wrap; flex-direction:row-reverse;">
+                    <img src="assets/images/IMG_0605.jpg" alt=""
+                        style="width:100%; max-width:500px; border-radius:12px;">
+                    <div style="flex:1; min-width:300px;">
+                        <h3>次世代との共創を。</h3>
+                        <p>学生の感性と企業のリソースを掛け合わせ、新たな価値を創造します。</p>
+                    </div>
+                </div>
+            </div>
+            <div id="teams" class="sl-tab-content reveal">
+                <p style="text-align:center; padding:100px 0;">準備中です。</p>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p style="color: #444;">&copy; 2026 NIGRA Inc.</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/script.js"></script>
+</body>
+
+</html>

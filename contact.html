@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | 株式会社ニグラ</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Outfit:wght@400;700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        .contact-hero {
+            padding-top: 180px;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 800px;
+            margin: 80px auto;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: #888;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+        }
+
+        .form-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
+            padding: 15px 0;
+            color: #fff;
+            font-size: 1.1rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-input:focus {
+            border-bottom-color: var(--accent-orange);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 25px;
+            background: var(--accent-orange);
+            color: #fff;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 900;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 40px;
+            box-shadow: 0 10px 40px rgba(255, 87, 34, 0.3);
+            transition: 0.4s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255, 87, 34, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="loader">
+        <div class="loader-text"></div>
+    </div>
+    <header class="header">
+        <div class="container">
+            <a href="https://www.nigura.site/" class="logo"><img src="assets/images/logo-nigra.png" alt="NIGRA" class="logo-img"></a>
+            <nav class="nav">
+                <a href="https://www.nigura.site/" class="nav-link">HOME</a>
+                <a href="https://www.nigura.site/academy" class="nav-link">Academy</a>
+                <a href="https://www.nigura.site/sportslink" class="nav-link">SportsLink</a>
+                <a href="https://www.nigura.site/company" class="nav-link">Company</a>
+                <a href="https://www.nigura.site/contact" class="nav-link active">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-hero">
+            <div class="container">
+                <span class="section-label reveal">GET IN TOUCH</span>
+                <h1 class="large-title reveal">意志を、届ける。</h1>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="contact-form reveal">
+                    <!-- Formspree: Action URL should be your Formspree ID -->
+                    <form action="https://formspree.io/f/mqaeapne" method="POST">
+                        <div class="form-group">
+                            <label class="form-label">FULL NAME / お名前</label>
+                            <input type="text" name="name" class="form-input" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">EMAIL ADDRESS / メールアドレス</label>
+                            <input type="email" name="email" class="form-input" placeholder="example@mail.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">CATEGORY / 項目</label>
+                            <select name="category" class="form-input"
+                                style="background: #080808; border-bottom: 1px solid #333;">
+                                <option value="academy">NIGRA Academy に関するお問い合わせ</option>
+                                <option value="sportslink">SportsLink に関するお問い合わせ</option>
+                                <option value="corporate">企業・パートナーシップに関するお問い合わせ</option>
+                                <option value="other">その他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">MESSAGE / 内容</label>
+                            <textarea name="message" class="form-input" rows="5" placeholder="Your Message"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p style="color: #666; font-size: 0.9rem;">&copy; 2026 NIGRA Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="assets/script.js"></script>
+</body>
+
+</html>
