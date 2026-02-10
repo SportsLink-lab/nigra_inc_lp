@@ -118,7 +118,8 @@ body {
     }
 
     .logo img {
-        height: 28px !important;
+        height: 26px !important;
+        width: auto !important;
     }
 
     .nav {
@@ -177,8 +178,8 @@ body {
 
 @media (max-width: 768px) {
     .large-title {
-        font-size: 2.2rem !important;
-        line-height: 1.4 !important;
+        font-size: 2.0rem !important;
+        line-height: 1.3 !important;
     }
 }
 
