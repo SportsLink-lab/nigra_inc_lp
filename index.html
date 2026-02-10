@@ -12,6 +12,10 @@
         href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700;900&family=Outfit:wght@400;700;900&display=swap"
         rel="stylesheet">
     <style>
+        .test-red {
+            color: red !important;
+        }
+
         .split-axis-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -58,12 +62,17 @@
 
         .axis-card h3 {
             color: #fff;
-            font-size: 2.2rem;
+            font-size: 2.22rem;
             font-weight: 900;
             margin-top: 10px;
         }
 
         @media (max-width: 768px) {
+            .large-title {
+                font-size: 1.5rem !important;
+                line-height: 1.2 !important;
+            }
+
             .split-axis-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -83,7 +92,7 @@
 
 <body>
     <div id="loader">
-        <div class="loader-text">NIGRA</div>
+        <div class="loader-text test-red">NIGRA</div>
     </div>
     <header class="header">
         <div class="container">
@@ -108,7 +117,6 @@
         <section class="section" style="background: #050505;">
             <div class="container">
                 <span class="section-label reveal">LATEST NEWS</span>
-                <h2 class="large-title reveal" style="font-size: 2.5rem;">最新情報</h2>
                 <div class="news-list" id="home-news-list"></div>
                 <div style="text-align:center; margin-top: 40px;">
                     <a href="https://www.nigura.site/news-list" class="btn-primary-glow reveal">すべて見る</a>
@@ -117,10 +125,6 @@
         </section>
         <section class="section">
             <div class="container">
-                <div style="text-align: center; margin-bottom: 60px;">
-                    <span class="section-label reveal">TWO AXES</span>
-                    <h2 class="reveal" style="font-size: 2.22rem; font-weight: 900;">可能性を広げる、二本の柱。</h2>
-                </div>
                 <div class="split-axis-grid">
                     <a href="https://www.nigura.site/academy" class="axis-card reveal">
                         <div class="axis-bg"
